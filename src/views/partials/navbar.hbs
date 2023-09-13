@@ -1,0 +1,108 @@
+{{#ifCond user.typeacc '==' '3'}}
+<div class="headerComponent">
+    <nav class="navbar navbar-expand-md navbar-light " style="background-color: #00447f">
+
+        <!--<a class="navUnidad">TITULO DE LA UNIDAD</a>-->
+        <img src="/images/logos/Logo3.jpeg" class="Logo" />
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link navOpciones" style="color: white;" href="/usuario/mis_cursos">Inicio <span
+                            class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item active dropdown">
+                    <a class="nav-link dropdown-toggle navOpciones" style="color: white;" href="#" id="navbarDropdown"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{user.fullname}}
+                    </a>
+                    <div class="dropdown-menu dropdown-size" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Mi Cuenta</a>
+
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/logout">CERRAR SESIÓN</a>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        {{/ifCond}}
+
+        {{#ifCond user.typeacc '==' '2'}}
+        <div class="headerComponent">
+            <nav class="navbar navbar-expand-md navbar-light " style="background-color: #00447f">
+
+                <!--<a class="navUnidad">TITULO DE LA UNIDAD</a>-->
+                <img src="/images/logos/Logo3.jpeg" class="Logo" />
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link navOpciones" style="color: white;" href="/profesor/mis_cursos">Inicio
+                                <span class="sr-only">(current)</span></a>
+                        </li>
+
+                        <li class="nav-item active dropdown">
+                            <a class="nav-link dropdown-toggle navOpciones" style="color: white;" href="#"
+                                id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                {{user.fullname}}
+                            </a>
+                            <div class="dropdown-menu dropdown-size" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Mi Cuenta</a>
+
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/logout">CERRAR SESIÓN</a>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+                {{/ifCond}}
+
+                {{#ifCond user.typeacc '==' '1'}}
+                <div class="headerComponent">
+                    <nav class="navbar navbar-expand-md navbar-light " style="background-color: #00447f">
+                        <img src="/images/logos/Logo3.jpeg" class="Logo" />
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link navOpciones" style="color: white;"
+                                        href="/administrador/menu">Inicio
+                                        <span class="sr-only">(current)</span></a>
+                                </li>
+
+                                <li class="nav-item active dropdown">
+                                    <a class="nav-link dropdown-toggle navOpciones" style="color: white;" href="#"
+                                        id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        {{user.fullname}}
+                                    </a>
+                                    <div class="dropdown-menu dropdown-size" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="#">Mi Cuenta</a>
+
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="/logout">CERRAR SESIÓN</a>
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+                        {{/ifCond}}
+
+
+                    </nav>
+                </div>

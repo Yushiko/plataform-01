@@ -1,0 +1,79 @@
+<div id="Componentes">
+    <div id="main">
+        {{> navbar}}
+        <div class="contentNewcourses">
+            <a class="CourseTitle">Nueva Unidad</a>
+            <a class="btn btn-primary float-right"  href="/administrador/menu_cursos/{{id}}" >Regresar</a>
+            <div class="row">
+                <div class="col-md-6 positionForm">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+
+                            <form action="/administrador/nueva_unidad" name="campoProducto" id="campoProducto"
+                                method="post">
+                                <p>
+                                    <br>
+                                </p>
+                                <tr>
+                                    <div class="form-group">
+                                        <input name="courseID" type="hidden" value={{id}} />
+                                        <label>Unidad</label>
+                                        <br>
+                                        <input name="unit" type="text" size="64" class="form-control" />
+                                        <p>
+                                            <br>
+                                        </p>
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="form-group">
+                                        <label>Titulo de la unidad</label>
+                                        <br>
+                                        <input name="title" type="text" size="64" class="form-control" />
+                                        <p>
+                                            <br>
+                                        </p>
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="form-group">
+                                        <label>Imagen representativa del curso (NO SIRVE AUN)</label>
+                                        <br>
+                                        <input type="file" name="fileField" id="fileField" />
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <p>
+                                        <br>
+                                    </p>
+                                    <p>
+                                        <br>
+                                    </p>
+                                    <div class="form-group">
+                                        <input style="float:left;" type="reset" value="Limpiar Campos"
+                                            class="btn btn-primary btn-lg">
+                                        <button style="float:right;" class="btn btn-primary btn-lg">Crear</button>
+                                    </div>
+                                    <p>
+                                        <br>
+                                    </p>
+                                    <p>
+                                        <br>
+                                    </p>
+                                </tr>
+
+                            </form>
+
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+               

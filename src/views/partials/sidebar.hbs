@@ -1,0 +1,10 @@
+<div id="sidebar" style="background-color: {{color}};">
+    <p>Temas</p>
+    <ul>
+        {{#each unitTopics}}
+        <li class="activityButton" data-value="{{id}}">{{topicnum}} {{topictitle}}</li>
+        {{else}}
+        <h4>NO SE ENCUENTRA NINGUN TEMA</h4>
+        {{/each}}
+    </ul>
+</div>

@@ -1,0 +1,178 @@
+<div class="row" id="allPeriods">
+    <div class="col-md-12 mx-auto">
+        <div class="card text-center">
+            {{> messages}}
+            <div class="card-header">
+                <h3>Periodos</h3>
+            </div>
+            <div class="card-body">
+                <div class="row  justify-content-start">
+
+                    <div class="col-sm">
+                        Busqueda
+                        <input type="text" style="width: 70%;" id="searchPeriod">
+                    </div>
+                    <div class="col-md">
+                        <button type='button' data-toggle='modal' data-target='#newPeriod'
+                            class="btn btn-success float-right" style="position: absolute; top: 20%; left: 70%">Nuevo Periodo</button>
+
+
+
+                        <!-- cuadro del modal AGREGAR-->
+                        <div class="modal fade" id="newPeriod" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <form id="nuevo_periodo">
+                                    <div class="modal-content">
+                                        <div class="modal-header d-block" style="background-color: #00447f; color: white">
+                                            <h5 class="modal-title text-center">
+                                                Nuevo Periodo
+                                            </h5>
+                                        </div>
+                                        <div class="modal-body" style="text-align: start;">
+
+                                            <div class="form-group">
+                                                <label for="inputCVE">Clave</label>
+                                                <div class="input-group">
+                                                    <input type="text" name="percve" id="inputCVE"
+                                                        class="form-control" />
+                                                </div>
+                                              
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="inputDESC">Descripcion</label>
+                                                <div class="input-group">
+                                                    <input type="text" name="perdesc" id="inputDESC"
+                                                        class="form-control" />
+                                                </div>
+                                                <small class="form-text text-muted">Ejemplo: FEB-MAY 20</small>
+                                            </div>
+
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cancelar</button>
+                                            <button class="btn btn-primary nuevoPeriodoBoton">Aceptar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+            <table class="table  table-striped  table-hover" id="tablePeriods">
+                <thead>
+                    <tr>
+                        <th style="width:10%; background-color: #5DACCD; color:#fff" scope="col">Clave</th>
+                        <th style="background-color: #5DACCD; color:#fff" scope="col">Descripcion</th>
+                        <th style="background-color: #5DACCD; color:#fff" scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="allPeriod">
+                    {{#each period}}
+                    <tr>
+                        <th scope="row">{{percve}}</th>
+                        <td>{{perdesc}}</td>
+                        <td>
+                            <button type="button" class="btn" data-toggle='modal' data-target='#Upda{{percve}}'
+                                style="background-color:#5172F3;border: 0px !important;color:white;" title="Editar">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="btn" data-toggle='modal' data-target='#Del{{percve}}'
+                                style="background-color: red;border: 0px !important;color:white;" title="Eliminar">
+                                <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                            </button>
+
+                             <!-- cuadro del modal EDITAR -->
+                            <div class="modal fade" id="Upda{{percve}}" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <form class="modificar_periodo" >
+                                        <div class="modal-content">
+                                            <div class="modal-header d-block" style="background-color: #00447f; color: white">
+                                                <h5 class="modal-title text-center">
+                                                    Editar Periodo
+                                                </h5>
+                                            </div>
+                                            <div class="modal-body" style="text-align: start;">
+
+                                                <div class="form-group">
+                                                    <label for="inputCVE">Clave</label>
+                                                    <div class="input-group">
+                                                        <input type="text" name="percve" id="inputCVE"
+                                                            value={{percve}} class="form-control" />
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="inputDESC">Descripcion</label>
+                                                    <div class="input-group">
+                                                        <input type="text" name="perdesc" id="inputDESC"
+                                                            value={{perdesc}} class="form-control" />
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <button class="btn btn-primary modificarPeriodBoton" value="{{percve}}">Guardar
+                                                    Cambios</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- cuadro del modal ELIMINAR -->
+                            <div class="modal fade" id="Del{{percve}}" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <form class="eliminar_periodo">
+                                        <div class="modal-content">
+                                            <div class="modal-header d-block" style="background-color: #00447f; color: white">
+                                                <h5 class="modal-title text-center">
+                                                    ELIMINAR "{{percve}} - {{perdesc}}"
+                                                </h5>
+                                            </div>
+                                            <div class="modal-body" style="text-align: start;">
+                                                <h5>ESTA SEGURO QUE DESEA ELIMINAR EL PERIODO: "{{percve}} - {{perdesc}}" ?</h5>
+                                                <h5>LA ACCION NO SE PODRA REVERTIR</h5>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <button class="btn btn-danger eliminarPeriodBoton" value="{{percve}}">ELIMINAR</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+
+
+                        </td>
+                    </tr>
+                    {{else}}
+                    <h4>NO SE ENCUENTRA NINGUN USUARIO REGISTRADO</h4>
+                    {{/each}}
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+<script src="/scripts/functionsAdmin.js" charset="utf-8"></script>

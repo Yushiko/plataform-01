@@ -1,0 +1,93 @@
+<div id="Componentes">
+    <div id="main">
+        {{> navbar}}
+        <div class="contentNewcourses">
+            <a class="CourseTitle">Administrar Temas</a>
+            <a class="btn btn-primary float-right" href="/administrador/menu_cursos/{{nameCourse}}">Regresar</a>
+            <a class="btn btn-primary float-right" href="/administrador/nuevo_tema/{{id}}">Añadir nuevo tema</a>
+
+            {{> messages}}
+
+            <div class="container p-4" style="height: 100%;">
+
+                <h2 style="text-align: center;">Curso: {{nameCourse}}</h2>
+                <h2 style="text-align: center;">Unidad: {{id}}</h2>
+
+                <div class='row'>
+                    <div class="col-md-12 mx-auto">
+                        <div class="card text-center">
+                            <div class="card-header">
+                                <h3>Temas</h3>
+                            </div>
+
+                            <!--asas-->
+                            {{#each unitTopics}}
+                            <div class="card-body">
+                                <div class="row justify-content-start topics">
+                                    <div class="col-1 topicsNumber">
+                                        {{topicNumber}}
+                                    </div>
+                                    <div class="col-lg topicsTitle">
+                                       {{title}}
+                                    </div>
+
+                                    <div class="col-2 topicsButton">
+                                        <button class="btn btn-success" data-toggle='modal'
+                                            data-target='#1'>Opciones</button>
+                                    </div>
+                                    <div class="col-2 topicsButton">
+                                        <button class="btn btn-info">Ver Subtemas</button>
+                                    </div>
+
+                                </div>
+
+                                <!-- cuadro del aviso -->
+                                <div class='modal fade' id="1" role='dialog'>
+                                    <div class='modal-dialog'>
+
+                                        <!-- contenido del cuadro-->
+                                        <div class='modal-content' style="color: black;">
+                                            <div class='modal-header'>
+
+                                                <h4 class='modal-title'>MENU DE OPCIONES</h4>
+                                            </div>
+                                            <div class='modal-body'>
+                                                <button class="btn btn-info">Modificar Tema</button>
+                                                <button class="btn btn-info">Añadir Contenido al tema</button>
+
+                                            </div>
+                                            <div class='modal-footer'>
+                                                <button type='button' class='btn btn-primary'
+                                                    data-dismiss='modal'>CANCELAR</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+
+                            {{else}}
+                            <h4>NO SE ENCUENTRA NINGUN TEMA</h4>
+                            {{/each}}
+
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+</div>

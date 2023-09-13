@@ -1,0 +1,38 @@
+<div id="Componentes">
+    <div id="main">
+        {{> navbar}}
+        <div class="contentCourses">
+            <a class="CourseTitle">Gestionar Cursos</a>
+            <div class="row">
+
+                {{#each mycourses}}
+                <div class="card border-dark CourseCard">
+                    <img class="card-img-top" src="../images/{{directory}}/Cursos/{{image}}" alt={{title}} />
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align: center;">{{courname}}</h5>
+                        <p class="card-text">{{description}}</p>
+                        <h6 class="card-text">Profesor: {{fullname}}</h6>
+                        {{#ifCond status '==' 'activo'}}
+                        <h6 class="card-text">Status:</h6>
+                        <h5 class="card-text" style="color: green;">{{status}}</h5>
+                        {{/ifCond}}
+                        {{#ifCond status '==' 'inactivo'}}
+                        <h6 class="card-text">Status:</h6>
+                        <h5 class="card-text" style="color: red;">{{status}}</h5>
+                        {{/ifCond}}
+
+                        <br />
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="/profesor/curso/{{id}}" class="btn btn-lg btn-primary ">
+                            Gestionar
+                        </a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+    </div>
+
+</div>

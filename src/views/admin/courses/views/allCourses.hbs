@@ -1,0 +1,308 @@
+<div class="row" id="allCourses" style="height: 100%">
+    <div class="col-md-12 mx-auto" >
+        <div class="card text-center" style="height: 100%">
+            {{> messages}}
+            <div class="card-header">
+                <h3>Cursos</h3>
+            </div>
+            <div class="card-body">
+                <div class="row justify-content-start mt-1" style="height: 100%">
+
+                    <div class="col-sm">
+                        Busqueda
+                        <input type="text" style="width: 70%;" id="searchCourse" placeholder="">
+                    </div>
+                    <div class="col-md">
+                        <button type='button' data-toggle='modal' data-target='#newUser'
+                            class="btn btn-success float-right" style="position: absolute; top: 20%; left: 70%" >Nuevo Curso</button>
+
+
+                        <!-- cuadro del modal AGREGAR-->
+                        <div class="modal fade" id="newUser" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+
+                                <form id="nuevo_curso" enctype="multipart/form-data">
+                                    <div class="modal-content">
+                                        <div class="modal-header d-block" style="background-color: #00447f; color: white">
+                                            <h5 class="modal-title text-center" >
+                                                Nuevo Curso
+                                            </h5>
+                                        </div>
+                                        <div class="modal-body" style="text-align: start;">
+
+                                            <div class="form-group">
+                                                <label for="inputName">Nombre del curso</label>
+                                                <div class="input-group">
+                                                    <input type="text" name="courname" id="inputName"
+                                                        class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label for="inputCate">Categoria</label>
+                                                <div class="input-group">
+                                                    <select name="catecve" class="form-control">
+                                                        <option value="" disabled selected>Seleccione categoria</option>
+                                                        {{#each category}}
+                                                        <optgroup label={{catedesc}}>
+                                                            <option value={{subcatecve}}>{{subcatedesc}}</option>
+                                                        </optgroup>
+                                                        {{else}}
+                                                        <option disabled="disabled">No se encontraron categorias
+                                                        </option>
+                                                        {{/each}}
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="inputDesc">Descripcion del curso</label>
+                                                <div class="input-group">
+                                                    <textarea name="description" cols="64" id="inputDesc" rows="2"
+                                                        class="form-control"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="inputStatus">Status</label>
+                                                <div class="input-group">
+                                                    <select name="status" class="form-control">
+                                                        <option value="activo">activo</option>
+                                                        <option value="inactivo">inactivo</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Imagen representativa del curso MAXIMO 5MB</label>
+                                                <br>
+                                                <input type="file" name="imageField" />
+                                            </div>
+
+
+                                        </div>
+                                        <div class="modal-footer" >
+                                            <button type="button" class="btn btn-secondary float-left"
+                                                data-dismiss="modal">Cancelar</button>
+                                            <button class="btn btn-primary float-right nuevoCursoBoton">Aceptar</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+            <table class="table  table-striped  table-hover" id="tableCourses">
+                <thead>
+                    <tr>
+                        <th style="width:10%; background-color: #5DACCD; color:#fff" scope="col">ID Curso</th>
+                        <th style="background-color: #5DACCD; color:#fff" scope="col">Nombre</th>
+                        <th style="background-color: #5DACCD; color:#fff" scope="col">Categoria</th>
+                        <th style="background-color: #5DACCD; color:#fff" scope="col">Descripcion</th>
+                        <th style="background-color: #5DACCD; color:#fff" scope="col">Status</th>
+                        <th style="background-color: #5DACCD; color:#fff" scope="col">Fecha de creacion</th>
+                        <th style="background-color: #5DACCD; color:#fff" scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="allCourse">
+                    {{#each course2}}
+                    <tr>
+                        <th scope="row">{{id}}</th>
+                        <td>{{courname}}</td>
+                        <td>{{subcatedesc}}</td>
+                        <td>{{description}}</td>
+                        {{#ifCond status '==' 'activo'}}
+                        <td style="color: green;">{{status}}</td>
+                        {{/ifCond}}
+                        {{#ifCond status '==' 'inactivo'}}
+                        <td style="color: red;">{{status}}</td>
+                        {{/ifCond}}
+                        <td>{{timeago createcour}}</td>
+                        <td>
+                            <button type="button" class="btn"
+                                style="background-color:#1b9e1d;border: 0px !important;color:white;" title="Detalles">
+                                <i class="far fa-eye" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="btn" data-toggle='modal' data-target='#{{id}}'
+                                style="background-color:#5172F3;border: 0px !important;color:white;"
+                                title="Editar Curso">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button>
+                             <button type="button" class="btn" data-toggle='modal' data-target='#Img{{id}}'
+                                style="background-color:#5172F3;border: 0px !important;color:white;"
+                                title="Cambiar Imagen">
+                                <i class="far fa-image" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="btn unitsButton" data-value={{id}}
+                                style="background-color:rgb(208, 255, 0);border: 0px !important;color:white;"
+                                title="Unidades">
+                                <i class="fas fa-book-open" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="btn" data-toggle='modal' data-target='#Del{{id}}'
+                                style="background-color: red;border: 0px !important;color:white;"
+                                title="Eliminar Curso">
+                                <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                            </button>
+
+                            <!-- cuadro del modal ELIMINAR -->
+                            <div class="modal fade" id="Del{{id}}" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <form class="eliminar_curso">
+                                        <div class="modal-content">
+                                            <div class="modal-header d-block" style="background-color: #00447f; color: white">
+                                                <h5 class="modal-title text-center">
+                                                    ELIMINAR CURSO: {{courname}}
+                                                </h5>
+                                            </div>
+                                            <div class="modal-body" style="text-align: start;">
+                                                <div class='col-lg-12' style="color: black;">
+                                                    <div class="alert alert-success alert-dismissible fade show"
+                                                        role="alert">
+                                                        <h4>Detalles del curso</h4>
+                                                        <br>
+                                                        <h5>Nombre: {{courname}}</h5>
+                                                        <h5>Categoria: {{subcatedesc}}</h5>
+                                                        <h5>Descripcion: {{description}}</h5>
+
+                                                    </div>
+                                                </div>
+                                                <h5>LA ACCION NO SE PODRA REVERTIR</h5>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <button class="btn btn-danger eliminarCourseBoton" value="{{id}}">ELIMINAR</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- cuadro del modal Editar imagen -->
+                            <div class="modal fade" id="Img{{id}}" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <form action="/administrador/delCourse/{{id}}" method="post">
+                                        <div class="modal-content">
+                                            <div class="modal-header d-block" style="background-color: #00447f; color: white">
+                                                <h5 class="modal-title text-center">
+                                                    CAMBIAR IMAGEN
+                                                </h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label for="inputStatus">Imagen</label>
+                                                <div class="input-group">
+                                                    <div>
+                                                        <img class="card-img-top"
+                                                            src="../images/{{directory}}/Cursos/{{image}}" />
+                                                    </div>
+                                                    <label>Imagen representativa del curso MAXIMO 5MB</label>
+                                                    <br>
+                                                    <input type="file" name="imageField" />
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-danger">GUARDAR CAMBIO</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                            <!-- cuadro del modal EDITAR -->
+                            <div class="modal fade" id={{id}} tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <form class="modificar_curso">
+                                        <div class="modal-content">
+                                            <div class="modal-header d-block" style="background-color: #00447f; color: white">
+                                                <h5 class="modal-title text-center">
+                                                    Editar Curso
+                                                </h5>
+                                            </div>
+                                            <div class="modal-body" style="text-align: start;">
+
+                                                <div class="form-group">
+                                                    <label for="inputName">Nombre del curso</label>
+                                                    <div class="input-group">
+                                                        <textarea name="courname" cols="64" id="inputName" rows="1"
+                                                            class="form-control">{{courname}}</textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="inputCate">Categoria</label>
+                                                    <div class="input-group">
+                                                        <select name="catecve" class="form-control">
+                                                            <option value="" disabled selected>Seleccione categoria
+                                                            </option>
+                                                            {{#each ../category}}
+                                                            <optgroup label={{catedesc}}>
+                                                                <option value={{subcatecve}}>{{subcatedesc}}</option>
+                                                            </optgroup>
+                                                            {{else}}
+                                                            <option disabled="disabled">No se encontraron categorias
+                                                            </option>
+                                                            {{/each}}
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="inputDesc">Descripcion del curso</label>
+                                                    <div class="input-group">
+                                                        <textarea name="description" cols="64" id="inputDesc" rows="2"
+                                                            class="form-control">{{description}}</textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="inputStatus">Status</label>
+                                                    <div class="input-group">
+                                                        <select name="status" class="form-control">
+                                                            <option value="activo">activo</option>
+                                                            <option value="inactivo">inactivo</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <button class="btn btn-primary modificarCourseBoton" value="{{id}}" >Aceptar</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                        </td>
+                    </tr>
+                    {{else}}
+                    <h4>NO SE ENCUENTRA NINGUN USUARIO REGISTRADO</h4>
+                    {{/each}}
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+<script src="/scripts/subcategorys.js" charset="utf-8"></script>
+<script src="/scripts/functionsAdmin.js" charset="utf-8"></script>

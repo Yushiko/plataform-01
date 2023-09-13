@@ -1,0 +1,256 @@
+<div class="row" id="allCourses">
+    <div class="col-md-12 mx-auto">
+        <div class="card text-center">
+            {{> messages}}
+            <div class="card-header">
+                <h3 class="text-center">Unidades</h3>
+            </div>
+            <div class="card-body">
+                <div class="row  justify-content-start">
+
+                    <div class="col-sm">
+                        Busqueda
+                        <input type="text" style="width: 70%;" id="searchCourse" placeholder="">
+                    </div>
+                    <div class="col-md">
+                        <button type='button' data-toggle='modal' data-target='#newUser'
+                            class="btn btn-success float-right" style="position: absolute; top: 20%; left: 70%">Nueva Unidad</button>
+
+
+                        <!-- cuadro del modal AGREGAR-->
+                        <div class="modal fade" id="newUser" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+
+                                <form id="nueva_unidad" enctype="multipart/form-data">
+                                    <div class="modal-content">
+                                        <div class="modal-header d-block" style="background-color: #00447f; color: white">
+                                            <h5 class="modal-title text-center">
+                                                Nueva Unidad
+                                            </h5>
+                                        </div>
+                                        <div class="modal-body" style="text-align: start;">
+
+                                            <div class="form-group">
+                                                <label for="inputName">Titulo de la unida</label>
+                                                <div class="input-group">
+                                                    <input type="text" name="unittitle" id="inputName"
+                                                        class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label for="inputCate">Numero de la unidad</label>
+                                                <div class="input-group">
+                                                    <input type="number" name="unitnum" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="inputDesc">Color descriptivo</label>
+                                                <div class="input-group">
+                                                    <input class="form-control" type="color" name="color">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Imagen representativa del curso MAXIMO 5MB</label>
+                                                <br>
+                                                <input type="file" name="imageField" />
+                                            </div>
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cancelar</button>
+                                            <button class="btn btn-primary nuevaUnidadBoton"  value="{{id}}">Aceptar</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+            <table class="table  table-striped  table-hover" id="tableCourses">
+                <thead>
+                    <tr>
+                        <th style="width:10%; background-color: #5DACCD; color:#fff" scope="col">ID Unidad</th>
+                        <th style="background-color: #5DACCD; color:#fff" scope="col">Unidad</th>
+                        <th style="background-color: #5DACCD; color:#fff" scope="col">Titulo</th>
+                        <th style="background-color: #5DACCD; color:#fff" scope="col">Color</th>
+                        <th style="background-color: #5DACCD; color:#fff" scope="col">Fecha de creacion</th>
+                        <th style="background-color: #5DACCD; color:#fff" scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="allUnits">
+                    {{#each unit}}
+                    <tr>
+                        <th scope="row">{{id}}</th>
+                        <td>Unidad {{unitnum}}</td>
+                        <td>{{unittitle}}</td>
+                        <td style="background-color: {{color}};">{{color}}</td>
+                        <td>{{timeago createunit}}</td>
+                        <td>
+                            <button type="button" class="btn"
+                                style="background-color:#1b9e1d;border: 0px !important;color:white;" title="Detalles">
+                                <i class="far fa-eye" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="btn" data-toggle='modal' data-target='#{{id}}'
+                                style="background-color:#5172F3;border: 0px !important;color:white;"
+                                title="Editar Unidad">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="btn" data-toggle='modal' data-target='#Img{{id}}'
+                                style="background-color:#5172F3;border: 0px !important;color:white;"
+                                title="Cambiar Imagen">
+                                <i class="far fa-image" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="btn topicTButton" data-value='{{id}}'
+                                style="background-color:rgb(208, 255, 0);border: 0px !important;color:white;"
+                                title="Temas">
+                                <i class="fas fa-book-open" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="btn" data-toggle='modal' data-target='#Del{{id}}'
+                                style="background-color: red;border: 0px !important;color:white;"
+                                title="Eliminar Unidad">
+                                <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                            </button>
+
+                            <!-- cuadro del modal ELIMINAR -->
+                            <div class="modal fade" id="Del{{id}}" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <form action="/administrador/delCourse/{{id}}" method="post">
+                                        <div class="modal-content">
+                                            <div class="modal-header d-block" style="background-color: #00447f; color: white">
+                                                <h5 class="modal-title text-center">
+                                                    ELIMINAR UNIDAD {{unitnum}}
+                                                </h5>
+                                            </div>
+                                            <div class="modal-body" style="text-align: start;">
+                                                <div class='col-lg-12' style="color: black;">
+                                                    <div class="alert alert-success alert-dismissible fade show"
+                                                        role="alert">
+                                                        <h4>Detalles del curso</h4>
+                                                        <br>
+                                                        <h5>Titulo: {{unittitle}}</h5>
+
+                                                    </div>
+                                                </div>
+                                                <h5>LA ACCION NO SE PODRA REVERTIR</h5>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-danger">ELIMINAR</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                            <!-- cuadro del modal EDITAR -->
+                            <div class="modal fade" id={{id}} tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <form class="modificar_unidad">
+                                        <div class="modal-content">
+                                            <div class="modal-header d-block" style="background-color: #00447f; color: white">
+                                                <h5 class="modal-title text-center">
+                                                    Editar Unidad
+                                                </h5>
+                                            </div>
+                                            <div class="modal-body" style="text-align: start;">
+
+                                                <div class="form-group">
+                                                    <label for="inputName">Titulo de la unida</label>
+                                                    <div class="input-group">
+                                                        <textarea name="unittitle" cols="64" id="inputName" rows="1"
+                                                            class="form-control">{{unittitle}}</textarea>
+
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label for="inputCate">Numero de la unidad</label>
+                                                    <div class="input-group">
+                                                        <input type="number" name="unitnum" value={{unitnum}} />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="inputDesc">Color descriptivo</label>
+                                                    <div class="input-group">
+                                                        <input class="form-control" type="color" name="color"
+                                                            value={{color}}>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <button class="btn btn-primary modificarUnitBoton" value="{{id}}" data-course="{{../id}}" >Aceptar</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- cuadro del modal Editar imagen -->
+                            <div class="modal fade" id="Img{{id}}" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <form action="/administrador/delCourse/{{id}}" method="post">
+                                        <div class="modal-content">
+                                            <div class="modal-header d-block" style="background-color: #00447f; color: white">
+                                                <h5 class="modal-title text-center">
+                                                    CAMBIAR IMAGEN
+                                                </h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label for="inputStatus">Imagen</label>
+                                                <div class="input-group">
+                                                    <div>
+                                                         <img class="card-img-top"
+                                                                src="../../images/{{../directoryCour}}/Unidades/{{image}}" />
+                                                    </div>
+                                                    <label>Imagen representativa del curso MAXIMO 5MB</label>
+                                                    <br>
+                                                    <input type="file" name="imageField" />
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-danger">GUARDAR CAMBIO</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                        </td>
+                    </tr>
+                    {{else}}
+                    <h4>NO SE ENCUENTRA NINGUA UNIDAD REGISTRADA</h4>
+                    {{/each}}
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+<script src="/scripts/subcategorys.js" charset="utf-8"></script>
+<script src="/scripts/functionsTeacher.js" charset="utf-8"></script>

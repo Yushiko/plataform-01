@@ -1,0 +1,33 @@
+<div id="Componentes">
+    <div id="main">
+        {{> navbar}}
+        <div class="contentCourses">
+            <div class="col-sm">
+                <a class="btn btn-primary float-left" style="width: 5%;position: relative;top: 15px" href="/usuario/mis_cursos"><i
+                            class="fas fa-arrow-left" aria-hidden="true"></i></a>
+            </div>
+            <div class="col-sm">
+                <a class="CourseTitle text-center">Curso {{nameCour}}</a>
+            </div>
+
+
+            <div class="row">
+
+                {{#each unites}}
+                <div class="card border-dark CourseCard mb-3" style="background-color: {{color}};">
+                    <img class="card-img-top border-dark" src="../../images/{{../directoryCour}}/Unidades/{{image}}"
+                        alt={{unittitle}} />
+                    <div class="card-body border-dark mb-3">
+                        <h5 class="card-title">Unidad {{unitnum}}</h5>
+                        <p class="card-text">{{unittitle}}</p>
+
+                        <a href="/usuario/mis_cursos/{{unittitle}}/comenzar" class="btn btn-lg btn-primary col-lg border-dark">
+                            Comenzar
+                        </a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+    </div>

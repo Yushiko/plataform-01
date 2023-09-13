@@ -1,0 +1,188 @@
+<div class="row" id="allsubcategorys">
+    <div class="col-md-12 mx-auto">
+        <div class="card text-center">
+            {{> messages}}
+            <div class="card-header">
+                <div class="col-sm">
+                    <h3 class="col-sm"  style="position: absolute;">Subcategorias de {{cate}}</h3>
+                </div>
+                <div class="col-sm">
+                    <a class="btn btn-primary float-left regresarCate" style="width: 5%;"> <i class="fas fa-arrow-left" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row  justify-content-start">
+
+                    <div class="col-sm">
+                        Busqueda
+                        <input type="text" style="width: 70%;" id="searchCategory">
+                    </div>
+                    <div class="col-md">
+                        <button type='button' data-toggle='modal' data-target='#newCategory'
+                            class="btn btn-success float-right" style="position: absolute; top: 20%; left: 70%">Nueva
+                            Subcategoria</button>
+
+                        <!-- cuadro del modal AGREGAR-->
+                        <div class="modal fade" id="newCategory" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <form id="nueva_subcategoria">
+                                    <div class="modal-content">
+                                        <div class="modal-header d-block" style="background-color: #00447f; color: white">
+                                            <h5 class="modal-title text-center">
+                                                Nueva Subcategoria
+                                            </h5>
+                                        </div>
+                                        <div class="modal-body" style="text-align: start;">
+
+                                            <div class="form-group">
+                                                <label for="inputCVE">Clave</label>
+                                                <div class="input-group">
+                                                    <input type="text" name="subcatecve" id="inputCVE"
+                                                        class="form-control" />
+                                                </div>
+                                                <small class="form-text text-muted">Ejemplo: INGL para Ingles</small>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="inputDESC">Descripcion</label>
+                                                <div class="input-group">
+                                                    <input type="text" name="subcatedesc" id="inputDESC"
+                                                        class="form-control" />
+                                                </div>
+                                                <small class="form-text text-muted">Ejemplo: Ingles</small>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cancelar</button>
+                                            <button class="btn btn-primary nuevaSubcategoriadoBoton"
+                                                value="{{cate}}">Aceptar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+            <table class="table  table-striped  table-hover" id="tableCategorys">
+                <thead>
+                    <tr>
+                        <th style="width:10%; background-color: #5DACCD; color:#fff" scope="col">Clave</th>
+                        <th style="background-color: #5DACCD; color:#fff" scope="col">Descripcion</th>
+                        <th style="background-color: #5DACCD; color:#fff" scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="allCategory">
+                    {{#each subcate}}
+                    <tr>
+                        <th scope="row">{{subcatecve}}</th>
+                        <td>{{subcatedesc}}</td>
+                        <td>
+
+                            <button type="button" class="btn" data-toggle='modal' data-target='#Upda{{subcatecve}}'
+                                style="background-color:#5172F3;border: 0px !important;color:white;" title="Editar">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="btn" data-toggle='modal' data-target='#Del{{subcatecve}}'
+                                style="background-color: red;border: 0px !important;color:white;" title="Eliminar">
+                                <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                            </button>
+
+
+
+                            <!-- cuadro del modal EDITAR -->
+                            <div class="modal fade" id="Upda{{subcatecve}}" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <form class="modificar_subcategoria">
+                                        <div class="modal-content">
+                                            <div class="modal-header d-block" style="background-color: #00447f; color: white">
+                                                <h5 class="modal-title text-center">
+                                                    Editar Subcategoria
+                                                </h5>
+                                            </div>
+                                            <div class="modal-body" style="text-align: start;">
+
+                                                <div class="form-group">
+                                                    <label for="inputCVE">Clave</label>
+                                                    <div class="input-group">
+                                                        <input type="text" name="subcatecve" id="inputCVE"
+                                                            value={{subcatecve}} class="form-control" />
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="inputDESC">Descripcion</label>
+                                                    <div class="input-group">
+                                                        <input type="text" name="subcatedesc" id="inputDESC"
+                                                            value={{subcatedesc}} class="form-control" />
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <button class="btn btn-primary modificarSubcategoryBoton"
+                                                    value="{{subcatecve}}">Guardar
+                                                    Cambios</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- cuadro del modal ELIMINAR -->
+                            <div class="modal fade" id="Del{{subcatecve}}" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <form class="eliminar_subcategoria">
+                                        <div class="modal-content">
+                                            <div class="modal-header d-block" style="background-color: #00447f; color: white">
+                                                <h5 class="modal-title text-center">
+                                                    ELIMINAR {{subcatedesc}}
+                                                </h5>
+                                            </div>
+                                            <div class="modal-body" style="text-align: start;">
+                                                <h5>ESTA SEGURO QUE DESEA ELIMINAR LA SUBCATEGORIA: {{subcatedesc}} ?
+                                                </h5>
+                                                <h5>LA ACCION NO SE PODRA REVERTIR</h5>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <button class="btn btn-danger eliminarSubcategoryBoton"
+                                                    value="{{subcatecve}}">ELIMINAR</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+
+                        </td>
+                    </tr>
+                    {{else}}
+                    <h4>NO SE ENCUENTRA NINGUNA SUBCATEGORIA REGISTRADA</h4>
+                    {{/each}}
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+<script src="/scripts/subcategorys.js" charset="utf-8"></script>
+<script src="/scripts/functionsAdmin.js" charset="utf-8"></script>

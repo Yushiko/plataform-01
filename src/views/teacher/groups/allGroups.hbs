@@ -1,0 +1,252 @@
+<div class="row" id="allGroups">
+    <div class="col-md-12 mx-auto">
+        <div class="card text-center">
+            {{> messages}}
+            <div class="card-header">
+                <h3>Mis Grupos</h3>
+            </div>
+            <div class="card-body">
+                <div class="row  justify-content-start">
+
+                    <div class="col-sm">
+                        Busqueda
+                        <input type="text" style="width: 70%;" id="searchUser"
+                           >
+                    </div>
+                    <div class="col-md">
+                        <button type='button' data-toggle='modal' data-target='#newGroup'
+                            class="btn btn-success float-right" style="position: absolute; top: 20%; left: 70%; display: none">Nuevo Grupo</button>
+
+                        <!-- cuadro del modal AGREGAR-->
+                        <div class="modal fade" id="newGroup" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <form id="nuevo_grupo" >
+                                    <div class="modal-content">
+                                        <div class="modal-header d-block" style="background-color: #00447f; color: white">
+                                            <h5 class="modal-title text-center">
+                                                Nuevo Grupo
+                                            </h5>
+                                        </div>
+                                        <div class="modal-body" style="text-align: start;">
+
+                                            <div class="form-group">
+                                                <label for="inputPeriod">Periodo</label>
+                                                <div class="input-group">
+                                                    <select name="percve" class="form-control">
+                                                        <option value="" disabled selected>Seleccione periodo</option>
+                                                        {{#each period}}
+                                                        <option value={{percve}}>{{perdesc}}</option>
+                                                        {{else}}
+                                                        <option disabled="disabled">No se encontraron periodos
+                                                        </option>
+                                                        {{/each}}
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="inputCour">Curso</label>
+                                                <div class="input-group">
+                                                    <select name="courid" class="form-control">
+                                                        <option value="" disabled selected>Seleccione curso</option>
+                                                        {{#each course2}}
+                                                        <option value={{id}}>{{courname}} - {{subcatedesc}}</option>
+                                                        {{else}}
+                                                        <option disabled="disabled">No se encontraron cursos
+                                                        </option>
+                                                        {{/each}}
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="inputTeacher">Profesor</label>
+                                                <div class="input-group">
+                                                    <select name="teacherid" class="form-control">
+                                                        <option value="" disabled selected>Seleccione profesor</option>
+                                                        {{#each teacher}}
+                                                        <option value={{id}}>{{fullname}}</option>
+                                                        {{else}}
+                                                        <option disabled="disabled">No se encontraron profesores
+                                                        </option>
+                                                        {{/each}}
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cancelar</button>
+                                            <button  class="btn btn-primary nuevoGrupoBoton">Aceptar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+            <table class="table  table-striped  table-hover" id="tableGroups">
+                <thead>
+                    <tr>
+                        <th style="width:10%; background-color: #5DACCD; color:#fff" scope="col">ID Grupo</th>
+                        <th style="background-color: #5DACCD; color:#fff" scope="col">Periodo</th>
+                        <th style="background-color: #5DACCD; color:#fff" scope="col">Curso</th>
+                        <th style="background-color: #5DACCD; color:#fff" scope="col">Profesor</th>
+                        <th style="background-color: #5DACCD; color:#fff" scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="allUsers">
+                    {{#each group}}
+                    <tr>
+                        <th scope="row">{{id}}</th>
+                        <td>{{perdesc}}</td>
+                        <td>{{courname}} - {{catecve}}</td>
+                        <td>{{fullname}}</td>
+                        <td>
+                            <button type="button" class="btn"
+                                style="background-color:#1b9e1d;border: 0px !important;color:white;"
+                                title="Detalles de usuario">
+                                <i class="far fa-eye" aria-hidden="true"></i>
+                            </button>
+
+                            <button type="button" class="btn" data-toggle='modal' data-target='#{{id}}'
+                                style="background-color:#5172F3;border: 0px !important;color:white;" title="Editar">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="btn listTButton" data-value={{id}}
+                                style="background-color:#EDC30F;border: 0px !important;color:white;"
+                                title="Integrantes">
+                                <i class="fas fa-users" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="btn" data-toggle='modal' data-target='#Del{{id}}'
+                                style="background-color: red;border: 0px !important;color:white;" title="Eliminar">
+                                <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                            </button>
+
+                            <!-- cuadro del modal EDITAR -->
+                            <div class="modal fade" id={{id}} tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <form action="/administrador/editUser/{{id}}" method="post">
+                                        <div class="modal-content">
+                                            <div class="modal-header d-block" style="background-color: #00447f; color: white">
+                                                <h5 class="modal-title text-center">
+                                                    Editar Usuario
+                                                </h5>
+                                            </div>
+                                            <div class="modal-body" style="text-align: start;">
+                                                <div class="form-group">
+                                                    <label for="inputName">Nombre</label>
+                                                    <div class="input-group">
+                                                        <textarea name="fullname" cols="64" id="inputName" rows="1"
+                                                            class="form-control">{{fullname}}</textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="inputEmail">Correo Electronido</label>
+                                                    <div class="input-group">
+                                                        <input type="email" name="email" id="inputEmail" value={{email}}
+                                                            class="form-control" placeholder="Ejemplo@ejemplo.com" />
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="inputDate">Fecha de nacimientos</label>
+                                                    <input class="form-control" name="birthday" type="date"
+                                                        data-date-format="DD MMMM YYYY" value={{birthday}}
+                                                        id="inputDate">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="inputwork">Puesto de trabajo</label>
+                                                    <input class="form-control" name="employment" value={{employment}}
+                                                        type="text" id="inputwork">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="inputNumber">Status</label>
+                                                    <div class="input-group">
+                                                        <select name="status" class="form-control">
+                                                            <option value="activo">activo</option>
+                                                            <option value="inactivo">inactivo</option>
+                                                        </select>
+                                                    </div>
+                                                    <small class="form-text text-muted">El status puede
+                                                        volver a activerse o desactivarse</small>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-primary">Guardar
+                                                    Cambios</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- cuadro del modal ELIMINAR -->
+                            <div class="modal fade" id="Del{{id}}" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <form class="eliminar_grupo">
+                                        <div class="modal-content">
+                                            <div class="modal-header d-block" style="background-color: #00447f; color: white">
+                                                <h5 class="modal-title text-center">
+                                                    ELIMINAR GRUPO {{id}}
+                                                </h5>
+                                            </div>
+                                            <div class="modal-body" style="text-align: start;">
+                                                <h5>ESTA SEGURO QUE DESEA ELIMINAR EL GRUPO: {{courname}} - {{catecve}} ?</h5>
+                                                <h5>LA ACCION NO SE PODRA REVERTIR</h5>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-danger eliminarGroupBoton" value="{{id}}">ELIMINAR</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                        </td>
+                    </tr>
+                    {{else}}
+                    <h4>NO SE ENCUENTRA NINGUN USUARIO REGISTRADO</h4>
+                    {{/each}}
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+<script src="/scripts/subcategorys.js" charset="utf-8"></script>
+<script src="/scripts/functionsTeacher.js" charset="utf-8"></script>

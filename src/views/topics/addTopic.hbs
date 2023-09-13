@@ -1,0 +1,80 @@
+<div id="Componentes">
+    <div id="main">
+        {{> navbar}}
+        <div class="contentNewcourses">
+            <a class="btn btn-primary float-right" href="/administrador/menu_temas/{{id}}">Regresar</a>
+
+            <div class="container p-4" style="height: 100%;">
+
+                <div class="row">
+                    <div class="col-md-12 mx-auto">
+                        <div class="card text-center">
+                            <div class="card-header">
+                                <h3>Nuevo Tema</h3>
+                            </div>
+                            <div class="card-body">
+
+                                <form action="/administrador/nuevo_tema" method="post">
+                                    <p>
+                                        <br>
+                                    </p>
+                                    <tr>
+                                        <div class="form-group">
+                                            <input name="unitID" type="hidden" value={{idCourse}} />
+                                            <label>Numero de tema</label>
+                                            <br>
+                                            <input name="topicNumber" type="number" size="20" class="form-control" />
+                                            <p>
+                                                <br>
+                                            </p>
+                                        </div>
+
+                                    </tr>
+                                    <tr>
+                                        <div class="form-group">
+                                            <label>Titulo del tema</label>
+                                            <br>
+                                            <input name="title" type="text" size="64" class="form-control" />
+                                            <p>
+                                                <br>
+                                            </p>
+                                        </div>
+                                    </tr>
+
+                                    <tr>
+                                        <p>
+                                            <br>
+                                        </p>
+                                        <p>
+                                            <br>
+                                        </p>
+                                        <div class="form-group">
+                                            <input style="float:left;" type="reset" value="Limpiar Campos"
+                                                class="btn btn-primary btn-lg">
+                                            <button style="float:right;" class="btn btn-primary btn-lg">Crear</button>
+                                        </div>
+                                        <p>
+                                            <br>
+                                        </p>
+                                        <p>
+                                            <br>
+                                        </p>
+                                    </tr>
+
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</div>

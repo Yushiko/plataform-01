@@ -1,0 +1,218 @@
+<div class="row">
+    <div class="col-md-12 mx-auto">
+        <div class="card text-center">
+            {{> messages}}
+            <div class="card-header">
+                <div class="col-sm">
+                    <a class="btn btn-primary float-left regresarTTemplates" style="width: 5%;" data-value={{unitID}}><i
+                            class="fas fa-arrow-left" aria-hidden="true"></i></a>
+                </div>
+                <div class="col-sm">
+                    <h3 class="col-sm text-center" style="position: absolute;">Plantilla</h3>
+                </div>
+                <div class="col-sm">
+                    <button type='button' data-toggle='modal' data-target='#newUser'
+                        class="btn btn-success float-right">Nuevo elemento</button>
+
+
+                    <!-- cuadro del modal AGREGAR-->
+                    <div class="modal fade" id="newUser" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+
+                            <form id="nueva_elementoT1">
+                                <div class="modal-content">
+                                    <div class="modal-header d-block" style="background-color: #00447f; color: white">
+                                        <h5 class="modal-title text-center">
+                                            Nuevo elemento
+                                        </h5>
+                                    </div>
+                                    <div class="modal-body" style="text-align: start;">
+
+                                        <div class="form-group">
+                                            <label>Elemento</label>
+                                            <div class="input-group">
+                                                <input type="text" name="element" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Respuesta</label>
+                                            <div class="input-group">
+                                                <input type="text" name="answer" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label for="inputCate">Numero del elemento</label>
+                                            <div class="input-group">
+                                                <input type="number" name="numberTemp" />
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cancelar</button>
+                                        <button class="btn btn-primary nuevoElementoT1Boton" value="{{tempid}}"
+                                            data-topic="{{topicid}}">Aceptar</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+
+            </div>
+            <div class="card-body">
+                <div class="row  justify-content-start">
+
+
+
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card border-danger ">
+                    <h5>Instrucciones</h5>
+                </div>
+            </div>
+            <div class="type1" style="display: flex;">
+                {{#each template}}
+                <div class="card border-dark templateT1Card">
+
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align: center; font-size: 5rem">{{element}}</h5>
+                        <input type="text" name="topictitle" id="inputName" value="{{answer}}"
+                            class="form-control border-dark" />
+                        <br />
+                        <h5 class="card-title" style="text-align: center; font-size: 1rem">Numero: {{numberTemp}}</h5>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button type="button" class="btn" data-toggle='modal' data-target='#{{id}}'
+                            style="background-color:#5172F3;border: 0px !important;color:white;" title="Editar">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn" data-toggle='modal' data-target='#Del{{id}}'
+                            style="background-color: red;border: 0px !important;color:white;" title="Eliminar">
+                            <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- cuadro del modal Editar-->
+                <div class="modal fade" id="{{id}}" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+
+                        <form class="editar_elementoT1">
+                            <div class="modal-content">
+                                <div class="modal-header d-block" style="background-color: #00447f; color: white">
+                                    <h5 class="modal-title text-center">
+                                        Editar elemento
+                                    </h5>
+                                </div>
+                                <div class="modal-body" style="text-align: start;">
+
+                                    <div class="form-group">
+                                        <label>Elemento</label>
+                                        <div class="input-group">
+                                            <input type="text" name="element" value="{{element}}"
+                                                class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Respuesta</label>
+                                        <div class="input-group">
+                                            <input type="text" name="answer" value="{{answer}}" class="form-control" />
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="inputCate">Numero del elemento</label>
+                                        <div class="input-group">
+                                            <input type="number" value="{{numberTemp}}" name="numberTemp" />
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Cancelar</button>
+                                    <button class="btn btn-primary editarElementoT1Boton" value="{{id}}"
+                                        data-topic="{{../topicid}}">Aceptar</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+
+                <!-- cuadro del modal ELIMINAR -->
+                <div class="modal fade" id="Del{{id}}" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <form class="eliminar_elementoT1">
+                            <div class="modal-content">
+                                <div class="modal-header d-block" style="background-color: #00447f; color: white">
+                                    <h5 class="modal-title text-center">
+                                        ELIMINAR {{element}}
+                                    </h5>
+                                </div>
+                                <div class="modal-body" style="text-align: start;">
+                                    <h5>ESTA SEGURO QUE DESEA ELIMINAR EL ELEMENTO: {{element}} ?</h5>
+                                    <h5>LA ACCION NO SE PODRA REVERTIR</h5>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Cancelar</button>
+                                    <button class="btn btn-danger eliminarElementoT1Boton" value="{{id}}"
+                                        data-topic="{{../topicid}}">ELIMINAR</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                {{else}}
+
+                {{/each}}
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+            <div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+</div>
+<script src="/scripts/subcategorys.js" charset="utf-8"></script>
+<script src="/scripts/functionsTeacher.js" charset="utf-8"></script>
+<script src="/scripts/templatesTeacher.js" charset="utf-8"></script>

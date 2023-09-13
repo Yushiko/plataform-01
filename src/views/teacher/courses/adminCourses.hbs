@@ -1,0 +1,32 @@
+<div id="Componentes">
+    {{> teacherSidebar this }}
+    <div id="main">
+        {{> navbar}}
+        <div class="contentNewcourses">
+
+            <div class="card text-center">
+                <div class="card-header">
+                    <div class="sideButtonAdmin">
+                        <span>&#9776;</span>
+                    </div>
+                    <h3>Gestion de curso "{{courseName}}"</h3>
+
+                </div>
+                {{> messages}}
+                {{> loadScreen}}
+                <div id="adminMenu" class="adminMenu">
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>

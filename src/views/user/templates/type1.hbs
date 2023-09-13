@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-md-12 mx-auto">
+        <div class="card text-center">
+            {{> messages}}
+
+
+            <div class="card-body">
+                <div class="card border-danger ">
+                    <h5>Instrucciones</h5>
+                </div>
+            </div>
+            <div class="card-deck type1">
+                {{#each template}}
+                <div class="templateT1Card">
+
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align: center; font-size: 5rem">{{element}}</h5>
+                        <input type="text" name="topictitle" id="inputName"
+                            class="form-control border-dark" />
+                        <br />
+                    </div>
+ 
+                </div>
+
+            
+                {{else}}
+
+                {{/each}}
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+</div>
+<script src="/scripts/subcategorys.js" charset="utf-8"></script>
+<script src="/scripts/functionsAdmin.js" charset="utf-8"></script>
+<script src="/scripts/templates.js" charset="utf-8"></script>

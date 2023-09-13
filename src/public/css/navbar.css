@@ -1,0 +1,68 @@
+.navbar{
+    min-width: 1rem;
+    height: 6rem;
+      padding: 15px 10px;
+      border: none;
+      border-radius: 0;
+    /*margin-bottom: 40px;*/
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+  }
+
+.sideButton{
+  position: absolute;
+  
+  top: 20px;
+  cursor: pointer;
+}
+.sideButton span{
+  display: block;
+  width: 40px;
+  text-align: center;
+  font-size: 30px;
+  border: 1px solid black;
+}  
+
+.sideButtonAdmin{
+  position: absolute;
+  
+  top: 10px;
+  cursor: pointer;
+}
+.sideButtonAdmin span{
+  display: block;
+  width: 40px;
+  text-align: center;
+  font-size: 30px;
+  border: 1px solid black;
+} 
+
+.navUnidad{
+  
+    position: relative;
+
+    left: 50px;
+    /*width: 100%; 
+    //height: 90px;
+	  //background-size: cover;*/
+	  font-size: calc(12px + 3vmin);
+    /*background-position: center;*/
+    color: white;
+
+}
+
+.navOpciones{
+    font-size: calc(3px + 3vmin);
+    color: white;
+    /*position: relative;*/
+  }
+
+.dropdown-size{
+    width: 100%;
+  }
+
+  .Logo{
+    height: 6rem;
+    
+   
+ 
+   }

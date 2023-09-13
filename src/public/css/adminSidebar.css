@@ -1,0 +1,120 @@
+#adminsidebar{
+    position: fixed;
+     width: 200px;
+     height: 200px;
+     background: #00447f;
+     left: -200px;
+     transition: all 100ms linear;
+     color: white;
+
+ }
+ 
+ #adminsidebar.active {
+     position: relative;
+     left: 0;
+ }
+ 
+ 
+ 
+ * {
+ margin: 0;
+ padding: 0;
+ }
+ 
+ #adminsidebar ul li {
+     color: rgba(203, 230, 230, .9);
+     text-align: center;
+     border-bottom: 1px solid rgba(100, 100, 100, .3);
+     padding: 15px 10px;
+     list-style: none;
+ }
+
+ #adminsidebar .list-group-item {
+   background-color: rgba(0, 0, 0, .0);
+
+}
+
+#adminsidebar .active{
+    background-color: black;
+    opacity: .5;
+ 
+ }
+ 
+ #adminsidebar p {
+     text-align: center;
+     padding: 15px 10px;
+     list-style: none;
+     font-size: 35px;
+ }
+ 
+ #adminsidebar .toggle-btn {
+     position: absolute;
+     left: 230px;
+     top: 20px;
+     cursor: pointer;
+ }
+ 
+ #adminsidebar .toggle-btn span {
+     display: block;
+     width: 40px;
+     text-align: center;
+     font-size: 30px;
+     border: 1px solid black;
+ }
+
+ 
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    display: none;
+}
+#pantallaCarga{
+    position: fixed;
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    z-index: 3;
+    background-color: black;
+    opacity: .8;
+}
+
+#mensajeCarga{
+    color: white;
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+#carga{
+
+    border: 15px solid #ccc;
+    border-top-color: #00447f;
+    border-top-style: groove;
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 100%;
+    -webkit-animation: girar 1.5s linear infinite;
+    -o-animation: girar 1.5s linear infinite;
+    animation: girar 1.5s linear infinite;
+
+}
+@keyframes girar {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
